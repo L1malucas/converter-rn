@@ -9,8 +9,6 @@ const { updateConfig } = require('../config/manager');
 const { logSuccess, logInfo } = require('../utils/logger');
 
 async function showMainMenu() {
-  await checkApiKey();
-  
   const { action } = await inquirer.prompt([
     {
       type: 'list',
@@ -19,7 +17,7 @@ async function showMainMenu() {
       choices: [
         { name: '🔄 Convert Component', value: 'convert' },
         { name: '✅ Validate Converted Components', value: 'validate' },
-        { name: '⚙️  Configure Settings', value: 'configure' },
+        { name: '🔑 Change Gemini API Key', value: 'apikey' },
         { name: '🚪 Exit', value: 'exit' }
       ]
     }
@@ -32,8 +30,8 @@ async function showMainMenu() {
     case 'validate':
       await handleValidate();
       break;
-    case 'configure':
-      await handleConfigure();
+    case 'apikey':
+      await handleApiKey();
       break;
     case 'exit':
       logInfo('Goodbye!');
@@ -43,7 +41,13 @@ async function showMainMenu() {
   await showMainMenu();
 }
 
+async function handleApiKey() {
+  const { saveApiKey } = require('../config/api-key');
+  await saveApiKey(true);
+}
+
 async function handleConvert() {
+  await checkApiKey();
   const components = await findComponents(process.cwd());
   
   if (components.length === 0) {
@@ -63,39 +67,6 @@ async function handleValidate() {
   await validateComponents(process.cwd());
 }
 
-async function handleConfigure() {
-  const { setting } = await inquirer.prompt([
-    {
-      type: 'list',
-      name: 'setting',
-      message: 'Configure:',
-      choices: [
-        { name: 'Change Gemini API Key', value: 'apikey' },
-        { name: 'Change Default Output Directory', value: 'output' },
-        { name: 'Back to Main Menu', value: 'back' }
-      ]
-    }
-  ]);
 
-  if (setting === 'back') return;
-
-  if (setting === 'apikey') {
-    const { saveApiKey } = require('../config/api-key');
-    await saveApiKey(true);
-  }
-
-  if (setting === 'output') {
-    const { output } = await inquirer.prompt([
-      {
-        type: 'input',
-        name: 'output',
-        message: 'Default output directory:',
-        default: './converted'
-      }
-    ]);
-    await updateConfig({ outputDir: output });
-    logSuccess('Output directory updated!');
-  }
-}
 
 module.exports = { showMainMenu };
