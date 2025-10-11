@@ -4,14 +4,14 @@ CLI tool to convert Angular/Ionic components to React Native/Expo components usi
 
 ## Features
 
-- 🔄 Converts Angular/Ionic components to React Native/Expo
-- 🎨 Separates styles into dedicated StyleSheet files
-- 🤖 Powered by Google Gemini AI for intelligent conversion
-- ✅ Validates converted components
-- 🔐 Encrypted API key storage
-- ⚙️ Configurable component and dependency mappings
-- 📦 Supports custom output directories
-- 🌲 Visual component tree display
+- Converts Angular/Ionic components to React Native/Expo
+- Separates styles into dedicated StyleSheet files
+- Powered by Google Gemini AI for intelligent conversion
+- Validates converted components
+- Encrypted API key storage
+- Configurable component, dependency, and icon mappings
+- Supports custom output directories
+- Visual component tree display
 
 ## Installation
 
@@ -48,7 +48,7 @@ npx ionic-to-rn
 
 - **Convert Component**: Scan and convert Angular components to React Native
 - **Validate Converted Components**: Check syntax and structure of converted files
-- **Configure Settings**: Change API key or output directory
+- **Change Gemini API Key**: Update your Gemini API key
 - **Exit**: Close the CLI
 
 ## Configuration
@@ -67,6 +67,13 @@ The `.ionic-to-rn.config.json` file allows customization:
   "dependencyMappings": {
     "@angular/common/http": "axios",
     "@capacitor/camera": "expo-camera"
+  },
+  "icons": {
+    "library": "react-icons/fa",
+    "mappings": {
+      "add": "FaPlus",
+      "arrow-back": "FaArrowLeft"
+    }
   },
   "codeStyle": {
     "interfacePrefix": "I",
@@ -133,12 +140,12 @@ const styles = StyleSheet.create({
 
 The validator checks:
 
-- ✓ React imports present
-- ✓ Component typed as React.FC
-- ✓ Export statements exist
-- ✓ Style files match imports
-- ✓ StyleSheet.create() usage
-- ✓ Basic syntax validation
+- React imports present
+- Component typed as React.FC
+- Export statements exist
+- Style files match imports
+- StyleSheet.create() usage
+- Basic syntax validation
 
 ## Partial Outputs
 
@@ -148,7 +155,7 @@ If conversion fails or is incomplete, partial output is saved as `ComponentName.
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/ionic-to-rn.git
+git clone https://github.com/L1malucas/ionic-to-rn.git
 
 # Install dependencies
 npm install
@@ -182,4 +189,4 @@ Contributions welcome! Please open an issue or submit a PR.
 
 ## Support
 
-For issues and questions, please open an issue on [GitHub](https://github.com/yourusername/ionic-to-rn/issues).
+For issues and questions, please open an issue on [GitHub](https://github.com/L1malucas/ionic-to-rn/issues).
