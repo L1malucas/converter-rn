@@ -1,4 +1,4 @@
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+const { GoogleGenAI } = require('@google/genai');
 const { getApiKey } = require('../config/api-key');
 const { readComponentFiles } = require('./reader');
 const { buildPrompt } = require('./prompt-builder');
@@ -15,8 +15,8 @@ async function convertComponent(component, outputDir) {
     
     logInfo(`Calling Gemini API...`);
     const apiKey = await getApiKey();
-    const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const genAI = new GoogleGenAI({ apiKey });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-pro' });
     
     const result = await model.generateContent(prompt);
     const response = await result.response;
