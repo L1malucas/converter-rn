@@ -1,0 +1,66 @@
+CODE STYLE REQUIREMENTS:
+
+1. COMPONENT STRUCTURE:
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import styles from './ComponentName.styles';
+
+interface IProps {
+  // props here
+}
+
+const ComponentName: React.FC<IProps> = (props) => {
+  // state and logic
+  return (
+    // JSX here
+  );
+};
+
+export default ComponentName;
+
+2. INTERFACES:
+- Always prefix with 'I': IProps, IState, IUser, IProduct
+- Use TypeScript strict typing
+- Define all props and state interfaces
+
+3. STATE MANAGEMENT:
+- Use useState for simple state
+- Use useEffect for lifecycle methods
+- Convert Angular lifecycle to React hooks:
+  * ngOnInit → useEffect(() => {}, [])
+  * ngOnDestroy → useEffect(() => { return () => cleanup }, [])
+
+4. FUNCTIONS:
+- Keep all function signatures
+- For functions with complex logic or external dependencies, create empty function with comment:
+  // TODO: Original implementation used: import { ServiceName } from 'path'
+  // Original code: [paste original code here]
+
+5. IMPORTS:
+- React Native core: View, Text, ScrollView, TouchableOpacity, Image, TextInput, etc.
+- Expo: expo-camera, expo-location, expo-file-system, etc.
+- For HTTP: use axios
+- For storage: @react-native-async-storage/async-storage
+- For navigation: @react-navigation (if routing detected)
+
+6. STYLE IMPORTS:
+- Always import styles from separate file
+- import styles from './ComponentName.styles';
+- Apply with style={styles.className}
+
+7. EVENT HANDLERS:
+- Always use arrow functions in JSX: onPress={() => handlePress()}
+- Define handlers before return statement
+
+8. READABLE CODE:
+- Proper indentation
+- Clear variable names
+- Logical component structure
+- No overly complex one-liners
+
+9. DO NOT:
+- Add features not in original
+- Remove functionality
+- Change business logic
+- Add unnecessary comments
+- Use placeholder or dummy data

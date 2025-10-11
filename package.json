@@ -1,12 +1,34 @@
 {
   "name": "ionic-to-rn",
   "version": "1.0.0",
-  "description": "script to convert ionic angular components to react native or expo components with help of gemini",
-  "main": "index.js",
+  "description": "CLI tool to convert Angular/Ionic components to React Native/Expo",
+  "main": "src/index.js",
+  "bin": {
+    "ionic-to-rn": "./bin/cli.js"
+  },
   "scripts": {
+    "start": "node bin/cli.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {},
+  "keywords": [
+    "ionic",
+    "angular",
+    "react-native",
+    "expo",
+    "converter",
+    "cli"
+  ],
   "author": "",
-  "license": "ISC"
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "chalk": "^4.1.2",
+    "inquirer": "^8.2.5",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.3.10",
+    "crypto-js": "^4.2.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }
