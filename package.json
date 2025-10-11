@@ -1,0 +1,12 @@
+{
+  "name": "ionic-to-rn",
+  "version": "1.0.0",
+  "description": "script to convert ionic angular components to react native or expo components with help of gemini",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}
