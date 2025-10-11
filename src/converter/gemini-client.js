@@ -57,10 +57,25 @@ function parseResponse(text) {
   const componentMatch = text.match(/===COMPONENT===\s*([\s\S]*?)(?:===STYLES===|$)/);
   const stylesMatch = text.match(/===STYLES===\s*([\s\S]*?)$/);
   
+  const component = componentMatch ? cleanupCode(componentMatch[1]) : null;
+  const styles = stylesMatch ? cleanupCode(stylesMatch[1]) : null;
+
   return {
-    component: componentMatch ? componentMatch[1].trim() : null,
-    styles: stylesMatch ? stylesMatch[1].trim() : null
+    component,
+    styles
   };
+}
+
+function cleanupCode(code) {
+  if (!code) return null;
+  const lines = code.split('\n');
+  if (lines[0].startsWith('```')) {
+    lines.shift();
+  }
+  if (lines[lines.length - 1].startsWith('```')) {
+    lines.pop();
+  }
+  return lines.join('\n').trim();
 }
 
 module.exports = { convertComponent };

@@ -24,6 +24,12 @@ COMPONENT MAPPINGS (Ionic → React Native):
 DEPENDENCY MAPPINGS (Angular/Capacitor → React Native/Expo):
 {{DEPENDENCY_MAPPINGS}}
 
+ICON LIBRARY:
+- Use {{ICON_LIBRARY}} for all icons.
+- Import icons like this: import Icon from '{{ICON_LIBRARY}}';
+- Use the following mappings for icon names:
+{{ICON_MAPPINGS}}
+
 CONVERSION GUIDELINES:
 
 HTML Attributes:

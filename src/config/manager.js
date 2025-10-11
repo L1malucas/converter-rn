@@ -10,6 +10,7 @@ const DEFAULT_CONFIG = {
   outputMode: 'same-directory',
   componentMappings: defaultMappings.components,
   dependencyMappings: defaultMappings.dependencies,
+  icons: defaultMappings.icons,
   styleStrategy: 'separate-file',
   codeStyle: {
     interfacePrefix: 'I',

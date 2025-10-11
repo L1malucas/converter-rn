@@ -32,6 +32,7 @@ export default ComponentName;
 
 4. FUNCTIONS:
 - Keep all function signatures
+- Always add types to function parameters, for example: (prev: any) => ...
 - For functions with complex logic or external dependencies, create empty function with comment:
   // TODO: Original implementation used: import { ServiceName } from 'path'
   // Original code: [paste original code here]
@@ -64,3 +65,6 @@ export default ComponentName;
 - Change business logic
 - Add unnecessary comments
 - Use placeholder or dummy data
+
+10. JSX STYLE:
+- Use <> for fragments instead of <React.Fragment/>

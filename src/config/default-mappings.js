@@ -94,3 +94,22 @@ module.exports = {
     '@capacitor/keyboard': 'react-native-keyboard-aware-scroll-view'
   }
 };
+
+module.exports.icons = {
+  library: 'react-icons/fa',
+  mappings: {
+    'add': 'FaPlus',
+    'arrow-back': 'FaArrowLeft',
+    'arrow-down': 'FaArrowDown',
+    'arrow-forward': 'FaArrowRight',
+    'arrow-up': 'FaArrowUp',
+    'checkmark': 'FaCheck',
+    'close': 'FaTimes',
+    'search': 'FaSearch',
+    'settings': 'FaCog',
+    'trash': 'FaTrash',
+    'person': 'FaUser',
+    'home': 'FaHome',
+    'menu': 'FaBars'
+  }
+};
