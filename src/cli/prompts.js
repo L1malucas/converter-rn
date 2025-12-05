@@ -46,7 +46,23 @@ async function askOutputDirectory() {
   return customDir;
 }
 
+async function askConversionType() {
+  const { type } = await inquirer.prompt([
+    {
+      type: 'list',
+      name: 'type',
+      message: 'Which type of conversion do you want to perform?',
+      choices: [
+        { name: 'Ionic/Angular to React Native/Expo', value: 'ionic-to-rn' },
+        { name: 'React with Tailwind to Angular 19+ with Tailwind', value: 'react-to-angular' }
+      ]
+    }
+  ]);
+  return type;
+}
+
 module.exports = {
   askComponentSelection,
-  askOutputDirectory
+  askOutputDirectory,
+  askConversionType
 };

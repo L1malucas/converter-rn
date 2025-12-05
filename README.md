@@ -1,15 +1,26 @@
 # ionic-to-rn
 
-CLI tool to convert Angular/Ionic components to React Native/Expo components using Google Gemini AI.
+CLI tool to convert components between frameworks using Google Gemini AI.
 
 ## Features
 
+### Ionic/Angular to React Native/Expo
 - Converts Angular/Ionic components to React Native/Expo
 - Separates styles into dedicated StyleSheet files
+- Configurable component, dependency, and icon mappings
+
+### React with Tailwind to Angular 19+
+- Converts React components with Tailwind CSS to Angular 19+
+- Preserves Tailwind classes inline
+- Uses Angular 19+ modern syntax (@if, @for, signals)
+- Uses Angular Material components
+- Strict TypeScript typing (no any)
+- Standalone components with inject() pattern
+
+### General Features
 - Powered by Google Gemini AI for intelligent conversion
 - Validates converted components
 - Encrypted API key storage
-- Configurable component, dependency, and icon mappings
 - Supports custom output directories
 - Visual component tree display
 
@@ -26,7 +37,7 @@ npm install -g ionic-to-rn
 
 ## Usage
 
-Navigate to your Angular/Ionic project directory and run:
+Navigate to your project directory and run:
 
 ```bash
 ionic-to-rn
@@ -46,8 +57,12 @@ npx ionic-to-rn
 
 ### Main Menu Options
 
-- **Convert Component**: Scan and convert Angular components to React Native
+- **Convert Component**: Choose conversion type and convert components
+  - Ionic/Angular to React Native/Expo
+  - React with Tailwind to Angular 19+
 - **Validate Converted Components**: Check syntax and structure of converted files
+  - React Native components validation
+  - Angular components validation
 - **Change Gemini API Key**: Update your Gemini API key
 - **Exit**: Close the CLI
 
@@ -85,14 +100,25 @@ The `.ionic-to-rn.config.json` file allows customization:
 
 ## Output
 
+### Ionic/Angular to React Native/Expo
+
 For each converted component, two files are created:
 
 - `ComponentName.tsx` - React Native component
 - `ComponentName.styles.ts` - StyleSheet with all styles
 
+### React to Angular 19+
+
+For each converted component, two files are created:
+
+- `component-name.component.ts` - Angular standalone component
+- `component-name.component.html` - Angular template with Tailwind classes
+
 ## Conversion Rules
 
-### Component Mappings
+### Ionic/Angular to React Native/Expo
+
+#### Component Mappings
 
 | Ionic Component | React Native Equivalent |
 |----------------|------------------------|
@@ -103,7 +129,7 @@ For each converted component, two files are created:
 | ion-card | View |
 | ion-list | FlatList |
 
-### Dependency Mappings
+#### Dependency Mappings
 
 | Angular/Capacitor | React Native/Expo |
 |------------------|-------------------|
@@ -111,7 +137,7 @@ For each converted component, two files are created:
 | @capacitor/camera | expo-camera |
 | @capacitor/storage | @react-native-async-storage/async-storage |
 
-### Style Conversion
+#### Style Conversion
 
 SCSS/CSS is converted to React Native StyleSheet:
 
@@ -136,7 +162,35 @@ const styles = StyleSheet.create({
 });
 ```
 
+### React to Angular 19+
+
+#### Component Mappings
+
+| React | Angular 19+ |
+|-------|-------------|
+| useState | signal() |
+| useEffect | effect() or lifecycle hooks |
+| useMemo | computed() |
+| useContext | inject() service |
+| {condition && <Component />} | @if (condition) { <Component /> } |
+| {items.map()} | @for (item of items; track item.id) {} |
+| className | class |
+| onClick | (click) |
+| onChange | (change) or (input) |
+
+#### Angular 19+ Modern Syntax
+
+- Control Flow: @if, @for, @switch (NOT *ngIf, *ngFor)
+- Signals: signal(), computed(), effect()
+- Standalone: All components are standalone
+- Dependency Injection: inject() function
+- Inputs/Outputs: input(), output() functions
+- Strict TypeScript: No 'any' type allowed
+- Tailwind: Preserved inline in templates
+
 ## Validation
+
+### React Native Validation
 
 The validator checks:
 
@@ -146,6 +200,19 @@ The validator checks:
 - Style files match imports
 - StyleSheet.create() usage
 - Basic syntax validation
+
+### Angular Validation
+
+The validator checks:
+
+- @Component decorator present
+- standalone: true configured
+- Modern control flow (@if, @for, not *ngIf, *ngFor)
+- No 'any' types
+- Template file exists
+- Component class exported
+- Using signals and modern patterns
+- Proper syntax (balanced brackets)
 
 ## Partial Outputs
 
@@ -172,7 +239,8 @@ npm start
 
 ### No Components Found
 - Ensure you're in the correct directory
-- Components must follow Angular naming: `*.page.ts`, `*.page.html`
+- For Ionic conversion: Components must follow Angular naming: `*.page.ts`, `*.page.html`
+- For React conversion: Components must be `.tsx` or `.jsx` files
 
 ### Conversion Errors
 - Check internet connection

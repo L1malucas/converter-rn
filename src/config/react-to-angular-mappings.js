@@ -1,0 +1,323 @@
+module.exports = {
+  components: {
+    // Layout & Structure
+    'div': 'div',
+    'section': 'section',
+    'article': 'article',
+    'header': 'header',
+    'footer': 'footer',
+    'main': 'main',
+    'aside': 'aside',
+    'nav': 'nav',
+
+    // React Router → Angular Router
+    'Link': 'a[routerLink]',
+    'NavLink': 'a[routerLink][routerLinkActive]',
+    'Navigate': 'Router.navigate',
+    'useNavigate': 'Router',
+    'useParams': 'ActivatedRoute.params',
+    'useLocation': 'Router.url',
+    'Routes': 'RouterModule',
+    'Route': 'Route',
+
+    // Forms
+    'input': 'input',
+    'textarea': 'textarea',
+    'select': 'select',
+    'option': 'option',
+    'button': 'button',
+    'form': 'form',
+    'label': 'label',
+
+    // Material UI → Angular Material
+    'Button': 'button[mat-button]',
+    'IconButton': 'button[mat-icon-button]',
+    'TextField': 'mat-form-field + input[matInput]',
+    'Select': 'mat-select',
+    'MenuItem': 'mat-option',
+    'Checkbox': 'mat-checkbox',
+    'Radio': 'mat-radio-button',
+    'RadioGroup': 'mat-radio-group',
+    'Switch': 'mat-slide-toggle',
+    'Slider': 'mat-slider',
+    'Dialog': 'MatDialog',
+    'Snackbar': 'MatSnackBar',
+    'Tooltip': 'matTooltip',
+    'Menu': 'mat-menu',
+    'Card': 'mat-card',
+    'CardContent': 'mat-card-content',
+    'CardActions': 'mat-card-actions',
+    'AppBar': 'mat-toolbar',
+    'Toolbar': 'mat-toolbar',
+    'Drawer': 'mat-drawer',
+    'List': 'mat-list',
+    'ListItem': 'mat-list-item',
+    'Divider': 'mat-divider',
+    'Chip': 'mat-chip',
+    'Avatar': 'mat-icon or img',
+    'Badge': 'matBadge',
+    'CircularProgress': 'mat-spinner',
+    'LinearProgress': 'mat-progress-bar',
+    'Alert': 'mat-snack-bar',
+    'Tabs': 'mat-tab-group',
+    'Tab': 'mat-tab',
+    'Accordion': 'mat-expansion-panel',
+    'AccordionSummary': 'mat-expansion-panel-header',
+    'AccordionDetails': 'ng-template[matExpansionPanelContent]',
+    'Table': 'mat-table',
+    'TableHead': 'mat-header-row',
+    'TableBody': 'mat-row',
+    'TableRow': 'mat-row',
+    'TableCell': 'mat-cell',
+    'Pagination': 'mat-paginator',
+    'Stepper': 'mat-stepper',
+    'Step': 'mat-step',
+    'DatePicker': 'mat-datepicker',
+    'TimePicker': 'input[matInput] with time',
+
+    // Headless UI → Angular Material
+    'Listbox': 'mat-select',
+    'Combobox': 'mat-autocomplete',
+    'Disclosure': 'mat-expansion-panel',
+    'Popover': 'mat-menu or cdkMenu',
+    'Dialog': 'MatDialog',
+    'Transition': 'Angular animations',
+
+    // Ant Design → Angular Material
+    'AntButton': 'button[mat-button]',
+    'AntInput': 'input[matInput]',
+    'AntSelect': 'mat-select',
+    'AntTable': 'mat-table',
+    'AntModal': 'MatDialog',
+    'AntDrawer': 'mat-drawer',
+    'AntMessage': 'MatSnackBar',
+    'AntNotification': 'MatSnackBar',
+
+    // Custom/Common Components
+    'Modal': 'MatDialog',
+    'Spinner': 'mat-spinner',
+    'Loader': 'mat-progress-spinner',
+    'Toast': 'MatSnackBar',
+    'Notification': 'MatSnackBar'
+  },
+
+  hooks: {
+    'useState': 'signal() or WritableSignal<T>',
+    'useEffect': 'effect() or ngOnInit/ngOnDestroy',
+    'useCallback': 'method in class or function',
+    'useMemo': 'computed() signal',
+    'useRef': 'ViewChild or ElementRef',
+    'useContext': 'inject() service',
+    'useReducer': 'signal() with update logic',
+    'useLayoutEffect': 'AfterViewInit lifecycle',
+    'useImperativeHandle': 'Component public methods',
+    'useId': 'UUID or unique identifier',
+    'useDebugValue': 'Development logging',
+    'useDeferredValue': 'RxJS debounceTime',
+    'useTransition': 'RxJS switchMap',
+    'useInsertionEffect': 'Renderer2',
+    'useSyncExternalStore': 'RxJS Observable'
+  },
+
+  patterns: {
+    // State management
+    'Redux': 'NgRx Store',
+    'Redux Toolkit': 'NgRx Store with createFeature',
+    'Zustand': 'Service with signals',
+    'Recoil': 'Service with signals',
+    'Jotai': 'Service with signals',
+    'MobX': 'Service with signals',
+    'Context API': 'Injectable Service',
+
+    // Data fetching
+    'React Query': 'HttpClient + RxJS',
+    'SWR': 'HttpClient + RxJS',
+    'Apollo Client': 'Apollo Angular',
+    'axios': 'HttpClient',
+    'fetch': 'HttpClient',
+
+    // Forms
+    'React Hook Form': 'Reactive Forms',
+    'Formik': 'Reactive Forms',
+    'Final Form': 'Reactive Forms',
+
+    // Routing
+    'React Router': 'Angular Router',
+    'Next.js Router': 'Angular Router',
+
+    // Animation
+    'Framer Motion': 'Angular Animations',
+    'React Spring': 'Angular Animations',
+    'GSAP': 'GSAP (same library)',
+
+    // UI Libraries
+    'Material-UI': 'Angular Material',
+    'Chakra UI': 'Angular Material',
+    'Ant Design': 'Angular Material',
+    'Mantine': 'Angular Material',
+    'Radix UI': 'Angular CDK',
+    'Headless UI': 'Angular CDK',
+    'Shadcn/ui': 'Custom components with Angular CDK'
+  },
+
+  events: {
+    'onClick': '(click)',
+    'onChange': '(change) or (input)',
+    'onSubmit': '(ngSubmit)',
+    'onFocus': '(focus)',
+    'onBlur': '(blur)',
+    'onKeyDown': '(keydown)',
+    'onKeyUp': '(keyup)',
+    'onKeyPress': '(keypress)',
+    'onMouseEnter': '(mouseenter)',
+    'onMouseLeave': '(mouseleave)',
+    'onMouseMove': '(mousemove)',
+    'onMouseOver': '(mouseover)',
+    'onMouseOut': '(mouseout)',
+    'onMouseDown': '(mousedown)',
+    'onMouseUp': '(mouseup)',
+    'onScroll': '(scroll)',
+    'onWheel': '(wheel)',
+    'onDrag': '(drag)',
+    'onDrop': '(drop)',
+    'onDragStart': '(dragstart)',
+    'onDragEnd': '(dragend)',
+    'onDragEnter': '(dragenter)',
+    'onDragLeave': '(dragleave)',
+    'onDragOver': '(dragover)',
+    'onDoubleClick': '(dblclick)',
+    'onContextMenu': '(contextmenu)',
+    'onInput': '(input)',
+    'onInvalid': '(invalid)',
+    'onReset': '(reset)',
+    'onLoad': '(load)',
+    'onError': '(error)',
+    'onAbort': '(abort)',
+    'onCanPlay': '(canplay)',
+    'onCanPlayThrough': '(canplaythrough)',
+    'onDurationChange': '(durationchange)',
+    'onEmptied': '(emptied)',
+    'onEnded': '(ended)',
+    'onLoadedData': '(loadeddata)',
+    'onLoadedMetadata': '(loadedmetadata)',
+    'onLoadStart': '(loadstart)',
+    'onPause': '(pause)',
+    'onPlay': '(play)',
+    'onPlaying': '(playing)',
+    'onProgress': '(progress)',
+    'onRateChange': '(ratechange)',
+    'onSeeked': '(seeked)',
+    'onSeeking': '(seeking)',
+    'onStalled': '(stalled)',
+    'onSuspend': '(suspend)',
+    'onTimeUpdate': '(timeupdate)',
+    'onVolumeChange': '(volumechange)',
+    'onWaiting': '(waiting)',
+    'onAnimationStart': '(animationstart)',
+    'onAnimationEnd': '(animationend)',
+    'onAnimationIteration': '(animationiteration)',
+    'onTransitionEnd': '(transitionend)'
+  },
+
+  attributes: {
+    'className': 'class',
+    'htmlFor': 'for',
+    'defaultValue': '[value] or ngModel',
+    'defaultChecked': '[checked]',
+    'dangerouslySetInnerHTML': '[innerHTML]',
+    'style': '[ngStyle] or [style.property]',
+    'ref': '#templateRef',
+    'key': 'trackBy function',
+    'disabled': '[disabled]',
+    'hidden': '[hidden]',
+    'readOnly': '[readonly]',
+    'required': '[required]',
+    'checked': '[checked]',
+    'selected': '[selected]',
+    'value': '[value] or [(ngModel)]',
+    'placeholder': '[placeholder]',
+    'type': '[type]',
+    'href': '[href] or [routerLink]',
+    'src': '[src]',
+    'alt': '[alt]',
+    'title': '[title]',
+    'id': '[id]',
+    'name': '[name]',
+    'tabIndex': '[tabindex]',
+    'role': '[role]',
+    'aria-label': '[attr.aria-label]',
+    'aria-labelledby': '[attr.aria-labelledby]',
+    'aria-describedby': '[attr.aria-describedby]',
+    'aria-hidden': '[attr.aria-hidden]',
+    'data-*': '[attr.data-*]'
+  },
+
+  typescript: {
+    'React.FC': 'Component class',
+    'React.Component': 'Component class extending Component',
+    'React.PureComponent': 'Component with OnPush change detection',
+    'React.memo': 'Component with OnPush change detection',
+    'PropsWithChildren': 'ng-content projection',
+    'JSX.Element': 'TemplateRef or Component',
+    'ReactNode': 'TemplateRef or Component',
+    'ReactElement': 'TemplateRef or Component',
+    'CSSProperties': 'Partial<CSSStyleDeclaration>',
+    'MouseEvent': 'MouseEvent (native)',
+    'ChangeEvent': 'Event (native)',
+    'FormEvent': 'Event (native)',
+    'KeyboardEvent': 'KeyboardEvent (native)',
+    'FocusEvent': 'FocusEvent (native)',
+    'ClipboardEvent': 'ClipboardEvent (native)',
+    'DragEvent': 'DragEvent (native)',
+    'TouchEvent': 'TouchEvent (native)',
+    'WheelEvent': 'WheelEvent (native)',
+    'AnimationEvent': 'AnimationEvent (native)',
+    'TransitionEvent': 'TransitionEvent (native)'
+  },
+
+  angular19Features: {
+    'controlFlow': {
+      'if': '@if',
+      'else': '@else',
+      'for': '@for',
+      'switch': '@switch',
+      'case': '@case',
+      'default': '@default'
+    },
+    'signals': {
+      'state': 'signal()',
+      'computed': 'computed()',
+      'effect': 'effect()',
+      'writable': 'WritableSignal<T>',
+      'readonly': 'Signal<T>'
+    },
+    'standalone': {
+      'component': 'standalone: true',
+      'imports': 'imports: [...]',
+      'providers': 'providers: [...]'
+    },
+    'inject': {
+      'constructor': 'inject()',
+      'service': 'inject(ServiceName)',
+      'token': 'inject(InjectionToken)'
+    },
+    'input': {
+      'required': 'input.required<T>()',
+      'optional': 'input<T>()',
+      'transform': 'input.transform()',
+      'alias': 'input({ alias: "name" })'
+    },
+    'output': {
+      'emit': 'output<T>()',
+      'alias': 'output({ alias: "name" })'
+    },
+    'viewChild': {
+      'required': 'viewChild.required<T>()',
+      'optional': 'viewChild<T>()'
+    },
+    'contentChild': {
+      'required': 'contentChild.required<T>()',
+      'optional': 'contentChild<T>()'
+    }
+  }
+};
