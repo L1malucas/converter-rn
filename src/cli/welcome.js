@@ -8,7 +8,7 @@ function showWelcome() {
   console.log(chalk.cyan.bold('\n  ╔════════════════════════════════════════════════════════════════╗'));
   console.log(chalk.cyan.bold('  ║                                                                ║'));
   console.log(chalk.cyan.bold('  ║                     FRAMEWORK CONVERTER                        ║'));
-  console.log(chalk.cyan.bold('  ║                    ionic-to-rn v1.0.2                          ║'));
+  console.log(chalk.cyan.bold('  ║                    converter-rn v1.0.2                          ║'));
   console.log(chalk.cyan.bold('  ║                                                                ║'));
   console.log(chalk.cyan.bold('  ╚════════════════════════════════════════════════════════════════╝'));
 
@@ -43,9 +43,9 @@ function showWelcome() {
 
   console.log(chalk.gray('  Resources:'));
   console.log(chalk.white('    Get API Key:'), chalk.blue('https://aistudio.google.com/api-key'));
-  console.log(chalk.white('    Repository:'), chalk.blue('https://github.com/L1malucas/ionic-to-rn'));
-  console.log(chalk.white('    Issues:'), chalk.blue('https://github.com/L1malucas/ionic-to-rn/issues'));
-  console.log(chalk.white('    Documentation:'), chalk.blue('https://github.com/L1malucas/ionic-to-rn#readme\n'));
+  console.log(chalk.white('    Repository:'), chalk.blue('https://github.com/L1malucas/converter-rn'));
+  console.log(chalk.white('    Issues:'), chalk.blue('https://github.com/L1malucas/converter-rn/issues'));
+  console.log(chalk.white('    Documentation:'), chalk.blue('https://github.com/L1malucas/converter-rn#readme\n'));
 
   console.log(chalk.cyan('  ─────────────────────────────────────────────────────────────────\n'));
 

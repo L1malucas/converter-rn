@@ -54,7 +54,7 @@ async function handleConvert() {
 
   const conversionType = await askConversionType();
 
-  if (conversionType === 'ionic-to-rn') {
+  if (conversionType === 'converter-rn') {
     await handleIonicToRNConvert();
   } else if (conversionType === 'react-to-angular') {
     await handleReactToAngularConvert();

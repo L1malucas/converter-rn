@@ -1,15 +1,17 @@
-# ionic-to-rn
+# converter-rn
 
 CLI tool to convert components between frameworks using Google Gemini AI.
 
 ## Features
 
 ### Ionic/Angular to React Native/Expo
+
 - Converts Angular/Ionic components to React Native/Expo
 - Separates styles into dedicated StyleSheet files
 - Configurable component, dependency, and icon mappings
 
 ### React with Tailwind to Angular 19+
+
 - Converts React components with Tailwind CSS to Angular 19+
 - Preserves Tailwind classes inline
 - Uses Angular 19+ modern syntax (@if, @for, signals)
@@ -18,6 +20,7 @@ CLI tool to convert components between frameworks using Google Gemini AI.
 - Standalone components with inject() pattern
 
 ### General Features
+
 - Powered by Google Gemini AI for intelligent conversion
 - Validates converted components
 - Encrypted API key storage
@@ -27,7 +30,7 @@ CLI tool to convert components between frameworks using Google Gemini AI.
 ## Installation
 
 ```bash
-npm install -g ionic-to-rn
+npm install -g converter-rn
 ```
 
 ## Prerequisites
@@ -40,18 +43,18 @@ npm install -g ionic-to-rn
 Navigate to your project directory and run:
 
 ```bash
-ionic-to-rn
+converter-rn
 ```
 
 Or using npx:
 
 ```bash
-npx ionic-to-rn
+npx converter-rn
 ```
 
 ### First Time Setup
 
-1. The CLI will create a `.ionic-to-rn.config.json` file in your project directory
+1. The CLI will create a `.converter-rn.config.json` file in your project directory
 2. You'll be prompted to enter your Gemini API key
 3. The key is encrypted and saved for future use
 
@@ -68,7 +71,7 @@ npx ionic-to-rn
 
 ## Configuration
 
-The `.ionic-to-rn.config.json` file allows customization:
+The `.converter-rn.config.json` file allows customization:
 
 ```json
 {
@@ -121,21 +124,21 @@ For each converted component, two files are created:
 #### Component Mappings
 
 | Ionic Component | React Native Equivalent |
-|----------------|------------------------|
-| ion-button | TouchableOpacity |
-| ion-content | ScrollView |
-| ion-input | TextInput |
-| ion-text | Text |
-| ion-card | View |
-| ion-list | FlatList |
+| --------------- | ----------------------- |
+| ion-button      | TouchableOpacity        |
+| ion-content     | ScrollView              |
+| ion-input       | TextInput               |
+| ion-text        | Text                    |
+| ion-card        | View                    |
+| ion-list        | FlatList                |
 
 #### Dependency Mappings
 
-| Angular/Capacitor | React Native/Expo |
-|------------------|-------------------|
-| @angular/common/http | axios |
-| @capacitor/camera | expo-camera |
-| @capacitor/storage | @react-native-async-storage/async-storage |
+| Angular/Capacitor    | React Native/Expo                         |
+| -------------------- | ----------------------------------------- |
+| @angular/common/http | axios                                     |
+| @capacitor/camera    | expo-camera                               |
+| @capacitor/storage   | @react-native-async-storage/async-storage |
 
 #### Style Conversion
 
@@ -155,10 +158,10 @@ Becomes:
 // React Native
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     paddingVertical: 10,
-    paddingHorizontal: 20
-  }
+    paddingHorizontal: 20,
+  },
 });
 ```
 
@@ -166,17 +169,17 @@ const styles = StyleSheet.create({
 
 #### Component Mappings
 
-| React | Angular 19+ |
-|-------|-------------|
-| useState | signal() |
-| useEffect | effect() or lifecycle hooks |
-| useMemo | computed() |
-| useContext | inject() service |
-| {condition && <Component />} | @if (condition) { <Component /> } |
-| {items.map()} | @for (item of items; track item.id) {} |
-| className | class |
-| onClick | (click) |
-| onChange | (change) or (input) |
+| React                        | Angular 19+                            |
+| ---------------------------- | -------------------------------------- |
+| useState                     | signal()                               |
+| useEffect                    | effect() or lifecycle hooks            |
+| useMemo                      | computed()                             |
+| useContext                   | inject() service                       |
+| {condition && <Component />} | @if (condition) { <Component /> }      |
+| {items.map()}                | @for (item of items; track item.id) {} |
+| className                    | class                                  |
+| onClick                      | (click)                                |
+| onChange                     | (change) or (input)                    |
 
 #### Angular 19+ Modern Syntax
 
@@ -222,7 +225,7 @@ If conversion fails or is incomplete, partial output is saved as `ComponentName.
 
 ```bash
 # Clone repository
-git clone https://github.com/L1malucas/ionic-to-rn.git
+git clone https://github.com/L1malucas/converter-rn.git
 
 # Install dependencies
 npm install
@@ -234,15 +237,18 @@ npm start
 ## Troubleshooting
 
 ### API Key Issues
+
 - Verify your Gemini API key at [Google AI Studio](https://makersuite.google.com/app/apikey)
-- Delete `.ionic-to-rn.config.json` and re-enter the key
+- Delete `.converter-rn.config.json` and re-enter the key
 
 ### No Components Found
+
 - Ensure you're in the correct directory
 - For Ionic conversion: Components must follow Angular naming: `*.page.ts`, `*.page.html`
 - For React conversion: Components must be `.tsx` or `.jsx` files
 
 ### Conversion Errors
+
 - Check internet connection
 - Review partial output files for errors
 - Verify component files are readable
@@ -257,4 +263,4 @@ Contributions welcome! Please open an issue or submit a PR.
 
 ## Support
 
-For issues and questions, please open an issue on [GitHub](https://github.com/L1malucas/ionic-to-rn/issues).
+For issues and questions, please open an issue on [GitHub](https://github.com/L1malucas/converter-rn/issues).

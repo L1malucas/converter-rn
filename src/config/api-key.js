@@ -3,7 +3,7 @@ const CryptoJS = require('crypto-js');
 const { loadConfig, updateConfig } = require('./manager');
 const { logSuccess, logWarning } = require('../utils/logger');
 
-const ENCRYPTION_KEY = 'ionic-to-rn-secret-key-v1';
+const ENCRYPTION_KEY = 'converter-rn-secret-key-v1';
 
 function encrypt(text) {
   return CryptoJS.AES.encrypt(text, ENCRYPTION_KEY).toString();
@@ -16,7 +16,7 @@ function decrypt(encryptedText) {
 
 async function checkApiKey() {
   const config = await loadConfig();
-  
+
   if (!config.geminiApiKey) {
     logWarning('No Gemini API key found.');
     await saveApiKey();
@@ -60,11 +60,11 @@ async function saveApiKey(isUpdate = false) {
 
 async function getApiKey() {
   const config = await loadConfig();
-  
+
   if (!config.geminiApiKey) {
     throw new Error('No API key configured');
   }
-  
+
   return decrypt(config.geminiApiKey);
 }
 

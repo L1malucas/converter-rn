@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const defaultMappings = require('./default-mappings');
 
-const CONFIG_FILE = '.ionic-to-rn.config.json';
+const CONFIG_FILE = '.converter-rn.config.json';
 
 const DEFAULT_CONFIG = {
   geminiApiKey: null,
@@ -21,7 +21,7 @@ const DEFAULT_CONFIG = {
 
 async function initConfig() {
   const configPath = path.join(process.cwd(), CONFIG_FILE);
-  
+
   if (!await fs.pathExists(configPath)) {
     await fs.writeJson(configPath, DEFAULT_CONFIG, { spaces: 2 });
   }
@@ -29,11 +29,11 @@ async function initConfig() {
 
 async function loadConfig() {
   const configPath = path.join(process.cwd(), CONFIG_FILE);
-  
+
   if (!await fs.pathExists(configPath)) {
     return DEFAULT_CONFIG;
   }
-  
+
   return await fs.readJson(configPath);
 }
 

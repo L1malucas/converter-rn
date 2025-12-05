@@ -53,7 +53,7 @@ async function askConversionType() {
       name: 'type',
       message: 'Which type of conversion do you want to perform?',
       choices: [
-        { name: 'Ionic/Angular to React Native/Expo', value: 'ionic-to-rn' },
+        { name: 'Ionic/Angular to React Native/Expo', value: 'converter-rn' },
         { name: 'React with Tailwind to Angular 19+ with Tailwind', value: 'react-to-angular' }
       ]
     }
