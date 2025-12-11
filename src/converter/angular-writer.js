@@ -1,15 +1,20 @@
 const fs = require('fs-extra');
 const path = require('path');
+const { validateOutputDirectory, sanitizeComponentName } = require('../utils/path-validator');
 
 async function writeAngularFiles(component, outputDir, parsed) {
+  // Validate and sanitize inputs
   const targetDir = outputDir || component.fullPath;
-  await fs.ensureDir(targetDir);
+  const validatedDir = validateOutputDirectory(targetDir);
+  const safeName = sanitizeComponentName(component.name);
 
-  const componentFileName = `${toKebabCase(component.name)}.component.ts`;
-  const templateFileName = `${toKebabCase(component.name)}.component.html`;
+  await fs.ensureDir(validatedDir);
 
-  const componentPath = path.join(targetDir, componentFileName);
-  const templatePath = path.join(targetDir, templateFileName);
+  const componentFileName = `${toKebabCase(safeName)}.component.ts`;
+  const templateFileName = `${toKebabCase(safeName)}.component.html`;
+
+  const componentPath = path.join(validatedDir, componentFileName);
+  const templatePath = path.join(validatedDir, templateFileName);
 
   await fs.writeFile(componentPath, parsed.component, 'utf-8');
   await fs.writeFile(templatePath, parsed.template, 'utf-8');
@@ -21,11 +26,15 @@ async function writeAngularFiles(component, outputDir, parsed) {
 }
 
 async function savePartialAngularOutput(component, outputDir, content) {
+  // Validate and sanitize inputs
   const targetDir = outputDir || component.fullPath;
-  await fs.ensureDir(targetDir);
+  const validatedDir = validateOutputDirectory(targetDir);
+  const safeName = sanitizeComponentName(component.name);
 
-  const partialFileName = `${toKebabCase(component.name)}.partial.txt`;
-  const partialPath = path.join(targetDir, partialFileName);
+  await fs.ensureDir(validatedDir);
+
+  const partialFileName = `${toKebabCase(safeName)}.partial.txt`;
+  const partialPath = path.join(validatedDir, partialFileName);
 
   await fs.writeFile(partialPath, content, 'utf-8');
 

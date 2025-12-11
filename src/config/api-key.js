@@ -1,16 +1,36 @@
 const inquirer = require('inquirer');
 const CryptoJS = require('crypto-js');
+const os = require('os');
 const { loadConfig, updateConfig } = require('./manager');
-const { logSuccess, logWarning } = require('../utils/logger');
+const { logSuccess, logWarning, logInfo } = require('../utils/logger');
 
-const ENCRYPTION_KEY = 'converter-rn-secret-key-v1';
+/**
+ * Get encryption key from environment variable or generate from machine-specific data
+ * Priority:
+ * 1. CONVERTER_RN_ENCRYPTION_KEY environment variable (most secure)
+ * 2. Machine-specific key based on hostname (better than hardcoded)
+ */
+function getEncryptionKey() {
+  // Try to get from environment variable first
+  if (process.env.CONVERTER_RN_ENCRYPTION_KEY) {
+    return process.env.CONVERTER_RN_ENCRYPTION_KEY;
+  }
+
+  // Fallback: Generate from machine-specific data
+  // This is better than a hardcoded key but still has limitations
+  const hostname = os.hostname();
+  const platform = os.platform();
+  return CryptoJS.SHA256(`converter-rn-${hostname}-${platform}-v2`).toString();
+}
 
 function encrypt(text) {
-  return CryptoJS.AES.encrypt(text, ENCRYPTION_KEY).toString();
+  const key = getEncryptionKey();
+  return CryptoJS.AES.encrypt(text, key).toString();
 }
 
 function decrypt(encryptedText) {
-  const bytes = CryptoJS.AES.decrypt(encryptedText, ENCRYPTION_KEY);
+  const key = getEncryptionKey();
+  const bytes = CryptoJS.AES.decrypt(encryptedText, key);
   return bytes.toString(CryptoJS.enc.Utf8);
 }
 
@@ -38,6 +58,14 @@ async function checkApiKey() {
 }
 
 async function saveApiKey(isUpdate = false) {
+  // Show security warning on first save
+  if (!isUpdate && !process.env.CONVERTER_RN_ENCRYPTION_KEY) {
+    logWarning('\nSecurity Notice:');
+    logInfo('  Your API key will be encrypted and stored locally.');
+    logInfo('  For enhanced security, set the CONVERTER_RN_ENCRYPTION_KEY environment variable.');
+    logInfo('  Example: export CONVERTER_RN_ENCRYPTION_KEY="your-secret-key"\n');
+  }
+
   const { apiKey } = await inquirer.prompt([
     {
       type: 'password',

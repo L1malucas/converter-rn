@@ -4,6 +4,7 @@ const { readReactComponentFile } = require('./react-reader');
 const { buildAngularPrompt } = require('./angular-prompt-builder');
 const { writeAngularFiles, savePartialAngularOutput } = require('./angular-writer');
 const { logInfo, logSuccess, logError, logWarning } = require('../utils/logger');
+const { validateAIResponse } = require('../utils/prompt-sanitizer');
 
 async function convertReactToAngular(component, outputDir) {
   logInfo(`\nStarting conversion for React component: ${component.name}...`);
@@ -26,12 +27,19 @@ async function convertReactToAngular(component, outputDir) {
       contents: [{ role: "user", parts: [{ text: prompt }] }]
     });
     logInfo(`  [\\] Response received.`);
-    logInfo('Result object: ' + JSON.stringify(result));
     const text = result.candidates[0].content.parts[0].text;
-    logInfo('Text object: ' + text);
-    logInfo(`  Response received successfully.`);
+    logInfo(`  Response received successfully (${text.length} characters).`);
 
     logInfo(`[4/5] Parsing response from Gemini...`);
+
+    // Validate that response contains expected markers
+    const expectedMarkers = ['===COMPONENT===', '===TEMPLATE==='];
+    if (!validateAIResponse(text, expectedMarkers)) {
+      logWarning('  Invalid response format from API. Saving partial output...');
+      await savePartialAngularOutput(component, outputDir, text);
+      return;
+    }
+
     const parsed = parseAngularResponse(text);
     if (!parsed.component || !parsed.template) {
       logWarning('  Incomplete response from API. Saving partial output...');

@@ -4,6 +4,7 @@ const { readComponentFiles } = require('./reader');
 const { buildPrompt } = require('./prompt-builder');
 const { writeConvertedFiles, savePartialOutput } = require('./writer');
 const { logInfo, logSuccess, logError, logWarning } = require('../utils/logger');
+const { validateAIResponse } = require('../utils/prompt-sanitizer');
 
 async function convertComponent(component, outputDir) {
   logInfo(`\nStarting conversion for component: ${component.name}...`);
@@ -25,12 +26,19 @@ async function convertComponent(component, outputDir) {
     logInfo(`  [-] Sending request to Gemini...`);
     const result = await genAI.models.generateContent({ model: "gemini-2.5-pro", contents: [{ role: "user", parts: [{ text: prompt }] }] });
     logInfo(`  [\\] Response received.`);
-    logInfo('Result object: ' + JSON.stringify(result));
     const text = result.candidates[0].content.parts[0].text;
-    logInfo('Text object: ' + text);
-    logInfo(`  Response received successfully.`);
+    logInfo(`  Response received successfully (${text.length} characters).`);
 
     logInfo(`[4/5] Parsing response from Gemini...`);
+
+    // Validate that response contains expected markers
+    const expectedMarkers = ['===COMPONENT===', '===STYLES==='];
+    if (!validateAIResponse(text, expectedMarkers)) {
+      logWarning('  Invalid response format from API. Saving partial output...');
+      await savePartialOutput(component, outputDir, text);
+      return;
+    }
+
     const parsed = parseResponse(text);
     if (!parsed.component || !parsed.styles) {
       logWarning('  Incomplete response from API. Saving partial output...');

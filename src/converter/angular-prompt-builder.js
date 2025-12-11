@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const reactMappings = require('../config/react-to-angular-mappings');
+const { sanitizeCodeContent, sanitizeComponentName } = require('../utils/prompt-sanitizer');
 
 async function buildAngularPrompt(files) {
   const templatePath = path.join(__dirname, '../../templates/react-to-angular-prompt.txt');
@@ -25,14 +26,18 @@ async function buildAngularPrompt(files) {
     .map(([react, angular]) => `${react} → ${angular}`)
     .join('\n');
 
+  // Sanitize user-provided code to prevent prompt injection
+  const sanitizedTsx = sanitizeCodeContent(files.tsx, 'tsx');
+  const sanitizedName = sanitizeComponentName(files.name);
+
   template = template
     .replace('{{STYLE_GUIDE}}', styleGuide)
     .replace('{{COMPONENT_MAPPINGS}}', componentMappings)
     .replace('{{HOOKS_MAPPINGS}}', hooksMappings)
     .replace('{{EVENT_MAPPINGS}}', eventMappings)
     .replace('{{ATTRIBUTE_MAPPINGS}}', attributeMappings)
-    .replace('{{COMPONENT_NAME}}', files.name)
-    .replace('{{TSX_CONTENT}}', files.tsx);
+    .replace('{{COMPONENT_NAME}}', sanitizedName)
+    .replace('{{TSX_CONTENT}}', sanitizedTsx);
 
   return template;
 }

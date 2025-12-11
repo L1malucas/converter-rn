@@ -1,5 +1,7 @@
 const inquirer = require('inquirer');
 const path = require('path');
+const { validateOutputDirectory } = require('../utils/path-validator');
+const { logWarning } = require('../utils/logger');
 
 async function askComponentSelection(components) {
   const choices = components.map(comp => ({
@@ -39,7 +41,15 @@ async function askOutputDirectory() {
       type: 'input',
       name: 'customDir',
       message: 'Output directory:',
-      default: './converted'
+      default: './converted',
+      validate: (input) => {
+        try {
+          validateOutputDirectory(input);
+          return true;
+        } catch (error) {
+          return error.message;
+        }
+      }
     }
   ]);
 
